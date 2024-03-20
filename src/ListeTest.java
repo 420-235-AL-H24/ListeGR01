@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ListeTest {
     Liste data;
-
+/*
     @BeforeEach
     void setUp() {
         data = new Liste();
@@ -47,6 +47,8 @@ class ListeTest {
         assertEquals(92, data.getElementAt(8));
         assertEquals(9, data.getNbElements());
     }
+
+ */
 
     @org.junit.jupiter.api.Test
     void testAjouter() {

@@ -1,30 +1,26 @@
-public class Liste {
-    private int[] tableau;
-    private int nbElements;
+import java.util.LinkedList;
 
-    public static final int RATIO_AGRANDISSEMENT = 2;
-    public static final int TAILLE_INITIALE = 5;
+public class Liste {
+    private int nbElements;
+    private Noeud premier;
 
     public Liste() {
-        this(TAILLE_INITIALE);
-    }
-
-    public Liste(int tailleInitiale) {
-        tableau = new int[tailleInitiale];
+        premier = null;
         nbElements = 0;
     }
 
+
     public String toString() {
-        String str = estVide() ? "[" : "[" + tableau[0];
-        for (int i = 1; i < nbElements; i++)
-            str +=  ", " + tableau[i];
+        String str = "[";
+        for (Noeud courant = premier; courant != null; courant = courant.prochain)
+            str +=  ", " + courant;
         return str + "]";
     }
-
+/*
     public int getElementAt(int index) {
         return tableau[index];
     }
-
+*/
     public int getNbElements() {
         return nbElements;
     }
@@ -32,7 +28,7 @@ public class Liste {
     public boolean estVide() {
         return nbElements == 0;
     }
-
+/*
     public void ajouter(int element) {
         ajouter(element, nbElements);
     }
@@ -103,4 +99,6 @@ public class Liste {
         tableau = new int[TAILLE_INITIALE];
         nbElements = 0;
     }
+
+ */
 }
