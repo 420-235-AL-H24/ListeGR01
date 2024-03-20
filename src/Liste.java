@@ -1,15 +1,15 @@
-public class Vecteur {
+public class Liste {
     private int[] tableau;
     private int nbElements;
 
     public static final int RATIO_AGRANDISSEMENT = 2;
     public static final int TAILLE_INITIALE = 5;
 
-    public Vecteur() {
+    public Liste() {
         this(TAILLE_INITIALE);
     }
 
-    public Vecteur(int tailleInitiale) {
+    public Liste(int tailleInitiale) {
         tableau = new int[tailleInitiale];
         nbElements = 0;
     }
@@ -50,7 +50,7 @@ public class Vecteur {
         return true;
     }
 
-    public void ajouter(Vecteur autre) {
+    public void ajouter(Liste autre) {
         for (int i = 0 ; i < autre.getNbElements(); i++)
             this.ajouter(autre.getElementAt(i));
     }
@@ -69,7 +69,7 @@ public class Vecteur {
         return -1;
     }
 
-    public boolean trouverTout(Vecteur autre) {
+    public boolean trouverTout(Liste autre) {
         for (int i = 0 ; i < autre.getNbElements(); i++)
             if (this.trouver(autre.getElementAt(i)) == -1)
                 return false;
@@ -86,7 +86,7 @@ public class Vecteur {
         return true;
     }
 
-    public boolean effacerTout(Vecteur autre) {
+    public boolean effacerTout(Liste autre) {
         boolean result = false;
         for (int i = 0; i < autre.getNbElements(); i++) {
             int valeurAEffacer = autre.getElementAt(i);
