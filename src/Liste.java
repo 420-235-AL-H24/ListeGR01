@@ -1,8 +1,6 @@
-import java.util.LinkedList;
-
 public class Liste {
-    private int nbElements;
     private Noeud premier;
+    private int nbElements;
 
     public Liste() {
         premier = null;
@@ -15,11 +13,18 @@ public class Liste {
             str += courant.valeur +  ", " ;
         return str + "]";
     }
-/*
+
     public int getElementAt(int index) {
-        return tableau[index];
+        int indexCourant = 0;
+        for (Noeud courant = premier; courant != null; courant = courant.prochain) {
+            if (indexCourant == index)
+                return courant.valeur;
+            else
+                indexCourant++;
+        }
+        return -1;
     }
-*/
+
     public int getNbElements() {
         return nbElements;
     }
