@@ -9,11 +9,10 @@ public class Liste {
         nbElements = 0;
     }
 
-
     public String toString() {
         String str = "[";
         for (Noeud courant = premier; courant != null; courant = courant.prochain)
-            str +=  ", " + courant;
+            str += courant.valeur +  ", " ;
         return str + "]";
     }
 /*
@@ -28,11 +27,28 @@ public class Liste {
     public boolean estVide() {
         return nbElements == 0;
     }
-/*
-    public void ajouter(int element) {
-        ajouter(element, nbElements);
-    }
 
+    public void ajouter(int element) {
+        //tableau[nbElements++] = element;
+
+        if (premier == null) {
+            premier = new Noeud();
+            premier.valeur = element;
+            premier.prochain = null;
+        }
+
+        Noeud dernier = premier;
+        while (dernier.prochain != null)
+            dernier = dernier.prochain;
+
+        Noeud nouveau = new Noeud();
+        dernier.valeur = element;
+        dernier.prochain = null;
+        dernier.prochain = nouveau;
+
+        nbElements++;
+    }
+/*
     public boolean ajouter(int element, int index) {
         if (index < 0 || index > nbElements)
             //throw new IndexOutOfBoundsException();
