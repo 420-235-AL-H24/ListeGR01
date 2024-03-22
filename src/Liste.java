@@ -15,11 +15,7 @@ public class Liste {
     }
 
     public int getElementAt(int index) {
-        for (Noeud courant = premier; courant != null; courant = courant.prochain)
-            if (index-- == 0)
-                return courant.valeur;
-        return -1;
-
+        return getNoeudAt(index).valeur;
 
         /* Version alternative:
         Noeud courant = premier;
@@ -31,6 +27,13 @@ public class Liste {
         }
         return courant.valeur;
         */
+    }
+
+    private Noeud getNoeudAt(int index) {
+        for (Noeud courant = premier; courant != null; courant = courant.prochain)
+            if (index-- == 0)
+                return courant;
+        return null;
     }
 
     public int getNbElements() {
@@ -59,20 +62,21 @@ public class Liste {
 
         nbElements++;
     }
-/*
+
     public boolean ajouter(int element, int index) {
         if (index < 0 || index > nbElements)
             //throw new IndexOutOfBoundsException();
             return false;
-        if (nbElements >= tableau.length)
-            resize();
-        for (int i = nbElements; i > index; i--)
-            tableau[i] = tableau[i - 1];
-        tableau[index] = element;
+
+        Noeud nouveau = new Noeud(element);
+        Noeud precedent = getNoeudAt(index - 1);
+        nouveau.prochain = precedent.prochain;
+        precedent.prochain = nouveau;
+
         nbElements++;
         return true;
     }
-
+/*
     public void ajouter(Liste autre) {
         for (int i = 0 ; i < autre.getNbElements(); i++)
             this.ajouter(autre.getElementAt(i));

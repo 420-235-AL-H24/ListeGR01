@@ -26,16 +26,16 @@ public class Main {
         System.out.println("idx3 : " + data.getElementAt(3)); // 30
         System.out.println("idx5 : " + data.getElementAt(5)); // 50
         System.out.println(data);
-/*
+
         System.out.println("\nTest 5: Ajouts d'éléments à des positions spécifiques");
         data.ajouter(-10, 0);
-        data.ajouter(25, 4);
+        data.ajouter(35, 4);
         data.ajouter(60, 8);
         data.ajouter(70, 9);
         data.ajouter(80, 10);
         System.out.println(data);
         System.out.println("nbElements: " + data.getNbElements());
-
+/*
         System.out.println("\nTest 6: Ajouts d'éléments à des positions invalides");
         System.out.println("index négatif: " + data.ajouter(99, -1));
         System.out.println("index trop grand: " + data.ajouter(99, 15));
