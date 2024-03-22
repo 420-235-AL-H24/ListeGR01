@@ -15,14 +15,22 @@ public class Liste {
     }
 
     public int getElementAt(int index) {
-        int indexCourant = 0;
-        for (Noeud courant = premier; courant != null; courant = courant.prochain) {
-            if (indexCourant == index)
+        for (Noeud courant = premier; courant != null; courant = courant.prochain)
+            if (index-- == 0)
                 return courant.valeur;
-            else
-                indexCourant++;
-        }
         return -1;
+
+
+        /* Version alternative:
+        Noeud courant = premier;
+        for (int i = 0; i <= index; i++) {
+            if (courant != null)
+                courant = courant.prochain;
+            else
+                return -1;
+        }
+        return courant.valeur;
+        */
     }
 
     public int getNbElements() {
@@ -37,18 +45,16 @@ public class Liste {
         //tableau[nbElements++] = element;
 
         if (premier == null) {
-            premier = new Noeud();
-            premier.valeur = element;
-            premier.prochain = null;
+            premier = new Noeud(element);
+            nbElements++;
+            return;
         }
 
         Noeud dernier = premier;
         while (dernier.prochain != null)
             dernier = dernier.prochain;
 
-        Noeud nouveau = new Noeud();
-        dernier.valeur = element;
-        dernier.prochain = null;
+        Noeud nouveau = new Noeud(element);
         dernier.prochain = nouveau;
 
         nbElements++;

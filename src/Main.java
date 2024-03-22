@@ -13,7 +13,7 @@ public class Main {
         System.out.println(data);
         System.out.println("nbElements: " + data.getNbElements());
         System.out.println("estVide: " + data.estVide());
-/*
+
         System.out.println("\nTest 3: Ajouts d'éléments jusqu'à ce que la capacité du vecteur augmente");
         data.ajouter(30);
         data.ajouter(40);
@@ -26,7 +26,7 @@ public class Main {
         System.out.println("idx3 : " + data.getElementAt(3)); // 30
         System.out.println("idx5 : " + data.getElementAt(5)); // 50
         System.out.println(data);
-
+/*
         System.out.println("\nTest 5: Ajouts d'éléments à des positions spécifiques");
         data.ajouter(-10, 0);
         data.ajouter(25, 4);
