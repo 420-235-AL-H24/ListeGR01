@@ -14,19 +14,16 @@ public class Liste {
         return str + "]";
     }
 
+    public int getNbElements() {
+        return nbElements;
+    }
+
+    public boolean estVide() {
+        return nbElements == 0;
+    }
+
     public int getElementAt(int index) {
         return getNoeudAt(index).valeur;
-
-        /* Version alternative:
-        Noeud courant = premier;
-        for (int i = 0; i <= index; i++) {
-            if (courant != null)
-                courant = courant.prochain;
-            else
-                return -1;
-        }
-        return courant.valeur;
-        */
     }
 
     private Noeud getNoeudAt(int index) {
@@ -36,17 +33,7 @@ public class Liste {
         return null;
     }
 
-    public int getNbElements() {
-        return nbElements;
-    }
-
-    public boolean estVide() {
-        return nbElements == 0;
-    }
-
     public void ajouter(int element) {
-        //tableau[nbElements++] = element;
-
         if (premier == null) {
             premier = new Noeud(element);
             nbElements++;
@@ -70,8 +57,15 @@ public class Liste {
 
         Noeud nouveau = new Noeud(element);
         Noeud precedent = getNoeudAt(index - 1);
-        nouveau.prochain = precedent.prochain;
-        precedent.prochain = nouveau;
+
+        if (index == 0) {
+            nouveau.prochain = premier;
+            premier = nouveau;
+        }
+        else {
+            nouveau.prochain = precedent.prochain;
+            precedent.prochain = nouveau;
+        }
 
         nbElements++;
         return true;
