@@ -107,13 +107,23 @@ public class Liste {
                 return false;
         return true;
     }
-/*
+
     public boolean effacerAt(int index) {
         if (index < 0 || index > nbElements)
             //throw new IndexOutOfBoundsException();
             return false;
-        for (int i = index; i < nbElements; i++)
-            tableau[i] = tableau[i + 1];
+
+        if (index == 0) {
+            premier = premier.prochain.prochain;
+        }
+        else if (index == nbElements - 1) {
+            Noeud precedent = getNoeudAt(index - 1);
+            precedent.prochain = null;
+        }
+        else {
+            Noeud precedent = getNoeudAt(index - 1);
+            precedent.prochain = precedent.prochain.prochain;
+        }
         nbElements--;
         return true;
     }
@@ -132,9 +142,7 @@ public class Liste {
     }
 
     public void effacerTout() {
-        tableau = new int[TAILLE_INITIALE];
+        premier = null;
         nbElements = 0;
     }
-
- */
 }
