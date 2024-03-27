@@ -40,7 +40,7 @@ public class Main {
         System.out.println("index négatif: " + data.ajouter(99, -1));
         System.out.println("index trop grand: " + data.ajouter(99, 15));
         System.out.println("nbElements: " + data.getNbElements());
-/*
+
         System.out.println("\nTest 7: Ajouter des valeurs provenant d'un autre vecteur");
         Liste test7 = new Liste();
         test7.ajouter(95);
@@ -67,7 +67,7 @@ public class Main {
 
         System.out.println(data);
         System.out.println(data.getNbElements());
-
+/*
         System.out.println("\nTest 10: Effacer des valeurs à une position spécifique");
         System.out.println(data.effacerAt(0));
         System.out.println(data.effacerAt(6));

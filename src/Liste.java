@@ -1,4 +1,18 @@
 public class Liste {
+    public class Noeud {
+        public final int valeur;
+        public Noeud prochain;
+
+        public Noeud(int valeur) {
+            this.valeur = valeur;
+            this.prochain = null;
+        }
+
+        public String toString() {
+            return String.valueOf(valeur);
+        }
+    }
+
     private Noeud premier;
     private int nbElements;
 
@@ -34,7 +48,7 @@ public class Liste {
     }
 
     public void ajouter(int element) {
-        if (premier == null) {
+        if (estVide()) {
             premier = new Noeud(element);
             nbElements++;
             return;
@@ -70,23 +84,20 @@ public class Liste {
         nbElements++;
         return true;
     }
-/*
+
     public void ajouter(Liste autre) {
         for (int i = 0 ; i < autre.getNbElements(); i++)
             this.ajouter(autre.getElementAt(i));
     }
 
-    private void resize() {
-        int[] nouveau = new int[RATIO_AGRANDISSEMENT * tableau.length];
-        for (int i = 0 ; i < tableau.length; i++)
-            nouveau[i] = tableau[i];
-        tableau = nouveau;
-    }
-
     public int trouver(int valeur) {
-        for (int i = 0; i < nbElements; i++)
-            if (tableau[i] == valeur)
-                return i;
+        int index = 0;
+        for (Noeud courant = premier; courant != null; courant = courant.prochain) {
+            if (courant.valeur == valeur)
+                return index;
+            else
+                index++;
+        }
         return -1;
     }
 
@@ -96,7 +107,7 @@ public class Liste {
                 return false;
         return true;
     }
-
+/*
     public boolean effacerAt(int index) {
         if (index < 0 || index > nbElements)
             //throw new IndexOutOfBoundsException();

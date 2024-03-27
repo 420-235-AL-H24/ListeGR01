@@ -71,7 +71,6 @@ class ListeTest {
 
     @Test
     void ajouterPlusieurs() {
-        /*
         Liste autre = new Liste();
         autre.ajouter(95);
         autre.ajouter(96);
@@ -82,7 +81,6 @@ class ListeTest {
         assertEquals(95, data.getElementAt(5));
         assertEquals(96, data.getElementAt(6));
         assertEquals(97, data.getElementAt(7));
-         */
     }
 
     @Test
