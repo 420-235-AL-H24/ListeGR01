@@ -13,11 +13,11 @@ public class Liste {
         }
     }
 
-    private Noeud premier;
+    private Noeud premier, dernier;
     private int nbElements;
 
     public Liste() {
-        premier = null;
+        dernier = premier = null;
         nbElements = 0;
     }
 
@@ -49,18 +49,14 @@ public class Liste {
 
     public void ajouter(int element) {
         if (estVide()) {
-            premier = new Noeud(element);
+            dernier = premier = new Noeud(element);
             nbElements++;
             return;
         }
 
-        Noeud dernier = premier;
-        while (dernier.prochain != null)
-            dernier = dernier.prochain;
-
         Noeud nouveau = new Noeud(element);
         dernier.prochain = nouveau;
-
+        dernier = nouveau;
         nbElements++;
     }
 
@@ -75,6 +71,10 @@ public class Liste {
         if (index == 0) {
             nouveau.prochain = premier;
             premier = nouveau;
+        }
+        else if (index == nbElements) {
+            ajouter(element);
+            return true;
         }
         else {
             nouveau.prochain = precedent.prochain;
@@ -119,6 +119,7 @@ public class Liste {
         else if (index == nbElements - 1) {
             Noeud precedent = getNoeudAt(index - 1);
             precedent.prochain = null;
+            dernier = precedent;
         }
         else {
             Noeud precedent = getNoeudAt(index - 1);
@@ -142,7 +143,7 @@ public class Liste {
     }
 
     public void effacerTout() {
-        premier = null;
+        dernier = premier = null;
         nbElements = 0;
     }
 }
