@@ -1,11 +1,12 @@
-public class Liste {
+public class Liste<Type> {
     public class Noeud {
-        public final int valeur;
-        public Noeud prochain;
+        public final Type valeur;
+        public Noeud precedent, prochain;
 
-        public Noeud(int valeur) {
+        public Noeud(Type valeur) {
             this.valeur = valeur;
             this.prochain = null;
+            this.precedent = null;
         }
 
         public String toString() {
@@ -36,7 +37,7 @@ public class Liste {
         return nbElements == 0;
     }
 
-    public int getElementAt(int index) {
+    public Type getElementAt(int index) {
         return getNoeudAt(index).valeur;
     }
 
@@ -47,7 +48,7 @@ public class Liste {
         return null;
     }
 
-    public void ajouter(int element) {
+    public void ajouter(Type element) {
         if (estVide()) {
             dernier = premier = new Noeud(element);
             nbElements++;
@@ -55,12 +56,13 @@ public class Liste {
         }
 
         Noeud nouveau = new Noeud(element);
+        nouveau.precedent = dernier;
         dernier.prochain = nouveau;
         dernier = nouveau;
         nbElements++;
     }
 
-    public boolean ajouter(int element, int index) {
+    public boolean ajouter(Type element, int index) {
         if (index < 0 || index > nbElements)
             //throw new IndexOutOfBoundsException();
             return false;
@@ -69,6 +71,7 @@ public class Liste {
         Noeud precedent = getNoeudAt(index - 1);
 
         if (index == 0) {
+            premier.precedent = nouveau;
             nouveau.prochain = premier;
             premier = nouveau;
         }
@@ -77,20 +80,22 @@ public class Liste {
             return true;
         }
         else {
+            nouveau.precedent = precedent;
             nouveau.prochain = precedent.prochain;
             precedent.prochain = nouveau;
+            nouveau.prochain.precedent = nouveau;
         }
 
         nbElements++;
         return true;
     }
 
-    public void ajouter(Liste autre) {
+    public void ajouter(Liste<Type> autre) {
         for (int i = 0 ; i < autre.getNbElements(); i++)
             this.ajouter(autre.getElementAt(i));
     }
 
-    public int trouver(int valeur) {
+    public int trouver(Type valeur) {
         int index = 0;
         for (Noeud courant = premier; courant != null; courant = courant.prochain) {
             if (courant.valeur == valeur)
@@ -101,7 +106,7 @@ public class Liste {
         return -1;
     }
 
-    public boolean trouverTout(Liste autre) {
+    public boolean trouverTout(Liste<Type> autre) {
         for (int i = 0 ; i < autre.getNbElements(); i++)
             if (this.trouver(autre.getElementAt(i)) == -1)
                 return false;
@@ -115,6 +120,7 @@ public class Liste {
 
         if (index == 0) {
             premier = premier.prochain.prochain;
+            premier.precedent = null;
         }
         else if (index == nbElements - 1) {
             Noeud precedent = getNoeudAt(index - 1);
@@ -129,10 +135,10 @@ public class Liste {
         return true;
     }
 
-    public boolean effacerTout(Liste autre) {
+    public boolean effacerTout(Liste<Type> autre) {
         boolean result = false;
         for (int i = 0; i < autre.getNbElements(); i++) {
-            int valeurAEffacer = autre.getElementAt(i);
+            Type valeurAEffacer = autre.getElementAt(i);
             int indexAEffacer = trouver(valeurAEffacer);
             if (indexAEffacer != -1) {
                 this.effacerAt(indexAEffacer);
