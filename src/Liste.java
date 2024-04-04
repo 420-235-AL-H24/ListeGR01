@@ -119,7 +119,7 @@ public class Liste<Type> {
             return false;
 
         if (index == 0) {
-            premier = premier.prochain.prochain;
+            premier = premier.prochain;
             premier.precedent = null;
         }
         else if (index == nbElements - 1) {
